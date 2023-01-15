@@ -1,0 +1,54 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/person
+    username: postgres
+    password: postgres
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 998704532116-b78oemt69le465unmfu5cr6q0u312u0r.apps.googleusercontent.com
+            client-secret: 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
+            authorization-grant-type: 'authorization_code'
+            redirect-uri: 'http://localhost:8080/callback.html'
+            scope: [ 'openid', 'profile', 'email' ]
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: noreply.tallocator@gmail.com
+    password: bcibpiohqqoalvxu
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+
+
+  flyway:
+    enabled: true
+    locations: classpath:main/db/migration
+
+  redis:
+    host: localhost
+    port: 6379
+    session:
+      store-type: redis
+      redis:
+        namespace: spring:session
+      hazelcast:
+        flush-mode: on_save
+
+jwt:
+  header: Authorization
+  secret: Zq4t6w9z$C&F)J@NcRfUjXn2r5u8x!A%
+  message: Welcome
+  jwtRefreshExpirationMs: 400000
+  jwtExpirationMs: 400000
